@@ -7,6 +7,7 @@ package mx.edu.ittepic.u1t03.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,10 +38,27 @@ public class Configurations extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Configurations</title>");            
+            out.println("<title>Configuraciones</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Configurations at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Mensaje recibido</h1>");
+            out.println("<h2>" + request.getMethod() + "</h2>");
+            out.println("<p>accept: " + request.getHeader("accept") + "<br>");
+            out.println("accept-language: " + request.getHeader("accept-language") + "<br>");
+            out.println("cache-control: " + request.getHeader("cache-control") + "<br>");
+            out.println("user-agent: " + request.getHeader("user-agent") + "<br>");
+            out.println("ua-cpu: " + request.getHeader("ua-cpu") + "<br>");
+            out.println("accept-ecoding: " + request.getHeader("accept-ecoding") + "<br>");
+            out.println("host: " + request.getHeader("host") + "<br>");
+            out.println("connection: " + request.getHeader("connection") + "</p><br>");
+            out.println("<h2>Parámetros Recibidos</h2>");
+            String[] params = request.getQueryString().split("&");
+            out.println("<p>");
+            for (int i=0; i<params.length; i++) {
+                out.println("<strong>" + (i+1)+". "+params[i] + "</strong><br>");
+            }
+            out.println("</p>");
+
             out.println("</body>");
             out.println("</html>");
         }
